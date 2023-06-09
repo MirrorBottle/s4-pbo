@@ -32,7 +32,7 @@ public class Amplang extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TableAmplang = new javax.swing.JTable();
         BtnLogout = new javax.swing.JButton();
         BtnDelete = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -53,6 +53,10 @@ public class Amplang extends javax.swing.JFrame {
         BtnAdd = new javax.swing.JButton();
         TxtSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TableSales = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        BtnAddSales = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -61,7 +65,7 @@ public class Amplang extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TableAmplang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -72,12 +76,12 @@ public class Amplang extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        TableAmplang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                TableAmplangMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TableAmplang);
 
         BtnLogout.setBackground(new java.awt.Color(255, 102, 102));
         BtnLogout.setText("Logout");
@@ -171,6 +175,35 @@ public class Amplang extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Form Amplang");
 
+        TableSales.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TableSales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableSalesMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(TableSales);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Penjualan");
+
+        BtnAddSales.setText("Tambah Penjualan");
+        BtnAddSales.setEnabled(false);
+        BtnAddSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddSalesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,34 +234,38 @@ public class Amplang extends javax.swing.JFrame {
                                     .addComponent(ComboUom, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(TxtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnAdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnLogout))
-                    .addComponent(TxtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BtnAdd)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(BtnEdit)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BtnDelete)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(BtnLogout))
+                                    .addComponent(TxtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnAddSales)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BtnDelete)
-                            .addComponent(BtnEdit)
-                            .addComponent(BtnAdd)
-                            .addComponent(BtnLogout))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(9, 9, 9)
@@ -254,13 +291,31 @@ public class Amplang extends javax.swing.JFrame {
                                 .addComponent(RadioVariant1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(RadioVariant2)
-                                .addGap(18, 18, 18)))
+                                .addGap(18, 18, 18))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnDelete)
+                            .addComponent(BtnEdit)
+                            .addComponent(BtnAdd)
+                            .addComponent(BtnLogout))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BtnAddSales, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addComponent(BtnSubmit)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(BtnSubmit))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -271,13 +326,15 @@ public class Amplang extends javax.swing.JFrame {
     }//GEN-LAST:event_ComboUomActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        QueryHelper.populateTable("SELECT * FROM amplangs", jTable1);
+        QueryHelper.populateTable("SELECT * FROM amplangs", TableAmplang);
+        QueryHelper.populateTable("SELECT amplangs.name, sales.amount, sales.price, sales.total, sales.date FROM sales JOIN amplangs ON sales.amplang_id=amplangs.id", TableSales);
     }//GEN-LAST:event_formComponentShown
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void TableAmplangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableAmplangMouseClicked
         BtnEdit.setEnabled(true);
         BtnDelete.setEnabled(true);
-    }//GEN-LAST:event_jTable1MouseClicked
+        BtnAddSales.setEnabled(true);
+    }//GEN-LAST:event_TableAmplangMouseClicked
     private void clearForm(){
         BtnEdit.setEnabled(false);
         BtnDelete.setEnabled(false);
@@ -295,15 +352,15 @@ public class Amplang extends javax.swing.JFrame {
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         // TODO add your handling code here:
-        int selectedRow = jTable1.getSelectedRow();
+        int selectedRow = TableAmplang.getSelectedRow();
         if (selectedRow != -1) {
-            TxtName.setText(jTable1.getValueAt(selectedRow, 1).toString());
-            TxtPrice.setText(jTable1.getValueAt(selectedRow, 2).toString());
-            CheckIsAvailable.setSelected(jTable1.getValueAt(selectedRow, 3).toString().equals("1"));
-            TxtDescription.setText(jTable1.getValueAt(selectedRow, 4).toString());
-            RadioVariant1.setSelected(jTable1.getValueAt(selectedRow, 5).toString().equals("Pedas"));
-            RadioVariant2.setSelected(jTable1.getValueAt(selectedRow, 5).toString().equals("Tidak Pedas"));
-            ComboUom.setSelectedItem(jTable1.getValueAt(selectedRow, 6).toString()); 
+            TxtName.setText(TableAmplang.getValueAt(selectedRow, 1).toString());
+            TxtPrice.setText(TableAmplang.getValueAt(selectedRow, 2).toString());
+            CheckIsAvailable.setSelected(TableAmplang.getValueAt(selectedRow, 3).toString().equals("1"));
+            TxtDescription.setText(TableAmplang.getValueAt(selectedRow, 4).toString());
+            RadioVariant1.setSelected(TableAmplang.getValueAt(selectedRow, 5).toString().equals("Pedas"));
+            RadioVariant2.setSelected(TableAmplang.getValueAt(selectedRow, 5).toString().equals("Tidak Pedas"));
+            ComboUom.setSelectedItem(TableAmplang.getValueAt(selectedRow, 6).toString()); 
         }
     }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -311,10 +368,10 @@ public class Amplang extends javax.swing.JFrame {
         // TODO add your handling code here:
         int choice = JOptionPane.showConfirmDialog(null, "Apa anda ingin menghapus data ini?", "Konfirmasi Hapus Data", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
-            int selectedRow = jTable1.getSelectedRow();
-            QueryHelper.delete("amplangs", jTable1.getValueAt(selectedRow, 0).toString());
+            int selectedRow = TableAmplang.getSelectedRow();
+            QueryHelper.delete("amplangs", TableAmplang.getValueAt(selectedRow, 0).toString());
             JOptionPane.showMessageDialog(null, "Berhasil menghapus data");
-            QueryHelper.populateTable("SELECT * FROM amplangs", jTable1);
+            QueryHelper.populateTable("SELECT * FROM amplangs", TableAmplang);
         }
     }//GEN-LAST:event_BtnDeleteActionPerformed
 
@@ -338,10 +395,10 @@ public class Amplang extends javax.swing.JFrame {
         String[] data = new String[] { name, price, is_available, description, variant, uom };
         
         if(BtnEdit.isEnabled()) {
-            int selectedRow = jTable1.getSelectedRow();
+            int selectedRow = TableAmplang.getSelectedRow();
             QueryHelper.update(
                 "amplangs",
-                jTable1.getValueAt(selectedRow, 0).toString(),
+                TableAmplang.getValueAt(selectedRow, 0).toString(),
                 fields,
                 data
             );
@@ -355,19 +412,49 @@ public class Amplang extends javax.swing.JFrame {
             clearForm();
             JOptionPane.showMessageDialog(null, "Berhasil menambah data");
         }
-        QueryHelper.populateTable("SELECT * FROM amplangs", jTable1);
+        QueryHelper.populateTable("SELECT * FROM amplangs", TableAmplang);
     }//GEN-LAST:event_BtnSubmitActionPerformed
 
     private void TxtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtSearchKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if(TxtSearch.getText().equals("")) {
-                QueryHelper.populateTable("SELECT * FROM amplangs", jTable1);
+                QueryHelper.populateTable("SELECT * FROM amplangs", TableAmplang);
             } else {
-                QueryHelper.populateTable("SELECT * FROM amplangs WHERE name LIKE '%" + TxtSearch.getText() + "%'", jTable1);
+                QueryHelper.populateTable("SELECT * FROM amplangs WHERE name LIKE '%" + TxtSearch.getText() + "%'", TableAmplang);
             }
         }
     }//GEN-LAST:event_TxtSearchKeyPressed
+
+    private void TableSalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableSalesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableSalesMouseClicked
+
+    private void BtnAddSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddSalesActionPerformed
+
+        String input = JOptionPane.showInputDialog(null, "Masukkan total:", "Penjualan Amplang", JOptionPane.QUESTION_MESSAGE);
+        if (input != null) {
+            try {
+                int amount = Integer.parseInt(input);
+                int selectedRow = TableAmplang.getSelectedRow();
+                
+                String[] fields = new String[] { "amplang_id", "amount", "price", "total" };
+                String amplang_id = TableAmplang.getValueAt(selectedRow, 0).toString();
+                String price = TableAmplang.getValueAt(selectedRow, 2).toString();
+                String total = String.valueOf(amount * Integer.parseInt(price));
+                String[] data = new String[] { amplang_id, input, price, total };
+                QueryHelper.store(
+                "sales",
+                    fields,
+                    data
+                );
+                JOptionPane.showMessageDialog(null, "Berhasil menambah data");
+                QueryHelper.populateTable("SELECT amplangs.name, sales.amount, sales.price, sales.total, sales.date FROM sales JOIN amplangs ON sales.amplang_id=amplangs.id", TableSales);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid input. Please enter a valid number.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_BtnAddSalesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,6 +493,7 @@ public class Amplang extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAdd;
+    private javax.swing.JButton BtnAddSales;
     private javax.swing.JButton BtnDelete;
     private javax.swing.JButton BtnEdit;
     private javax.swing.JButton BtnLogout;
@@ -414,6 +502,8 @@ public class Amplang extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboUom;
     private javax.swing.JRadioButton RadioVariant1;
     private javax.swing.JRadioButton RadioVariant2;
+    private javax.swing.JTable TableAmplang;
+    private javax.swing.JTable TableSales;
     private javax.swing.JTextArea TxtDescription;
     private javax.swing.JTextField TxtName;
     private javax.swing.JTextField TxtPrice;
@@ -425,8 +515,9 @@ public class Amplang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
