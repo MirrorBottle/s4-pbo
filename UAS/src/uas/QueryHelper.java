@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package commtrack.Helper;
+package uas;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -15,16 +10,16 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JTable;
 
-/**
- *
- * @author setia
- */
-public class Query {
-    static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+import javax.swing.table.DefaultTableModel;
 
-  static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-  static final String DB_URL = "jdbc:mysql://localhost/s4_siapp";
+public final class QueryHelper {
+  static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+  static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+  static final String DB_URL = "jdbc:mysql://localhost/s4_uas_pbo";
   static final String USER = "root";
   static final String PASS = "";
 
@@ -62,13 +57,13 @@ public class Query {
   }
 
   public static ArrayList<String> find(String table, Integer id) throws SQLException {
-    ArrayList<ArrayList<String>> result = Query.select("SELECT * FROM " + table + " WHERE id=" + id);
+    ArrayList<ArrayList<String>> result = QueryHelper.select("SELECT * FROM " + table + " WHERE id=" + id);
     ArrayList<String> data = result.isEmpty() ?  new ArrayList<String>() : result.get(0);
     return data;
   }
 
   public static ArrayList<String> find(String table, String extraQuery) throws SQLException {
-    ArrayList<ArrayList<String>> result = Query.select("SELECT * FROM " + table + " " + extraQuery);
+    ArrayList<ArrayList<String>> result = QueryHelper.select("SELECT * FROM " + table + " " + extraQuery);
     ArrayList<String> data = result.isEmpty() ?  new ArrayList<String>() : result.get(0);
     return data;
   }
@@ -117,6 +112,36 @@ public class Query {
       stmt.execute(query);
     } catch (Exception e) {
       System.out.println(e.getMessage());
+    }
+  }
+ 
+  public static void populateTable(String query, JTable table) {
+    DefaultTableModel model = (DefaultTableModel) table.getModel();
+    model.setRowCount(0); // Clear existing data
+    try {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        // Add column names to the table
+        Vector<String> columnNames = new Vector<>();
+        for (int i = 1; i <= columnCount; i++) {
+            columnNames.add(metaData.getColumnName(i));
+        }
+        model.setColumnIdentifiers(columnNames);
+
+        // Add rows to the table
+        while (rs.next()) {
+            Vector<Object> rowData = new Vector<>();
+            for (int i = 1; i <= columnCount; i++) {
+                rowData.add(rs.getObject(i));
+            }
+            model.addRow(rowData);
+        }
+        rs.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
   }
 }

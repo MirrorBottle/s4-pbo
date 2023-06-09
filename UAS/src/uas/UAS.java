@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package commtrack;
-
+package uas;
 /**
  *
  * @author setia
  */
-public class Commtrack {
+public class UAS {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Login login = new Login();
+        QueryHelper.init();
+        Amplang login = new Amplang();
         
         login.setVisible(true);
     }
