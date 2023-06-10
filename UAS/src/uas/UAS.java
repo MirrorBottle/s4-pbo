@@ -15,7 +15,7 @@ public class UAS {
      */
     public static void main(String[] args) {
         QueryHelper.init();
-        Amplang login = new Amplang();
+        Login login = new Login();
         
         login.setVisible(true);
     }
